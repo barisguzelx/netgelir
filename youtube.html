@@ -6,45 +6,28 @@
 <title>YouTube Gelir Tahmini | NetGelir</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
 body{
-background: radial-gradient(circle at 20% 20%, #1a1f3a, #0b0f1e 70%);
+background:#0b0f1e;
 color:white;
-padding-top:100px;
+font-family:'Segoe UI',sans-serif;
 text-align:center;
+padding-top:80px;
 }
 
-h1{
-font-size:28px;
-margin-bottom:10px;
-}
-
-p{
-color:#aaa;
-margin-bottom:30px;
-}
-
-.calculator{
-background:rgba(25,30,60,0.6);
+.container{
+background:#151c35;
 padding:40px;
-width:380px;
+width:400px;
 margin:auto;
 border-radius:20px;
 }
 
-input, select{
+select,input{
 width:100%;
 padding:12px;
 margin-bottom:15px;
 border-radius:10px;
 border:none;
-font-size:14px;
 }
 
 button{
@@ -56,11 +39,6 @@ background:linear-gradient(45deg,#00f5ff,#9d00ff);
 color:white;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.05);
 }
 
 .result{
@@ -69,28 +47,31 @@ font-size:16px;
 }
 </style>
 </head>
+
 <body>
 
 <h1>YouTube Gelir Tahmini</h1>
-<p>Kategori ve ülkeye göre tahmini kazancınızı öğrenin.</p>
 
-<div class="calculator">
+<div class="container">
 
-<input type="number" id="views" placeholder="Aylık toplam görüntülenme">
-
-<select id="category">
-<option value="2">Genel içerik</option>
-<option value="1.5">Oyun kanalı</option>
-<option value="4">Finans / yatırım</option>
-<option value="3">Teknoloji</option>
-<option value="2.5">Eğitim</option>
-</select>
+<input type="number" id="views" placeholder="Aylık görüntülenme">
 
 <select id="country">
-<option value="1">Türkiye</option>
-<option value="2.5">ABD</option>
-<option value="2">Almanya</option>
-<option value="1.8">Avrupa</option>
+<option value="TR">Türkiye</option>
+<option value="US">ABD</option>
+</select>
+
+<select id="category">
+<option value="entertainment">Eğlence</option>
+<option value="gaming">Oyun</option>
+<option value="tech">Teknoloji</option>
+<option value="education">Eğitim</option>
+<option value="finance">Finans</option>
+</select>
+
+<select id="type">
+<option value="long">Uzun Video</option>
+<option value="shorts">Shorts</option>
 </select>
 
 <button onclick="calculate()">Geliri Hesapla</button>
@@ -100,19 +81,36 @@ font-size:16px;
 </div>
 
 <script>
+function getCPM(country,category,type){
+
+const data={
+TR:{
+long:{entertainment:1.2,gaming:0.9,tech:2,education:2.5,finance:3.5},
+shorts:{entertainment:0.15,gaming:0.10,tech:0.20,education:0.25,finance:0.30}
+},
+US:{
+long:{entertainment:4,gaming:3,tech:6,education:7,finance:12},
+shorts:{entertainment:0.25,gaming:0.20,tech:0.30,education:0.35,finance:0.50}
+}
+};
+
+return data[country][type][category];
+}
+
 function calculate(){
 let views=document.getElementById("views").value;
-let category=document.getElementById("category").value;
 let country=document.getElementById("country").value;
+let category=document.getElementById("category").value;
+let type=document.getElementById("type").value;
 
-let estimatedCPM = category * country;
-let revenue=(views/1000)*estimatedCPM;
-let yearly=revenue*12;
+let cpm=getCPM(country,category,type);
+let monthly=(views/1000)*cpm;
+let yearly=monthly*12;
 
 document.getElementById("result").innerHTML=
-"Tahmini Aylık Gelir: $"+revenue.toFixed(2)+
+"Tahmini Aylık Gelir: $"+monthly.toFixed(2)+
 "<br>Tahmini Yıllık Gelir: $"+yearly.toFixed(2)+
-"<br><br>Tahmini 1000 izlenme kazancı: $"+estimatedCPM.toFixed(2);
+"<br><br>Ortalama 1000 izlenme kazancı: $"+cpm;
 }
 </script>
 

@@ -21,11 +21,13 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #aaa;
   margin-bottom: 30px;
-  background: linear-gradient(45deg, #00f5ff, #9d00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .calculator {
@@ -35,7 +37,6 @@ h1 {
   width: 350px;
   margin: auto;
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.05);
 }
 
 input {
@@ -44,7 +45,6 @@ input {
   margin-bottom: 15px;
   border-radius: 10px;
   border: none;
-  outline: none;
   font-size: 14px;
 }
 
@@ -73,11 +73,11 @@ button:hover {
 <body>
 
 <h1>YouTube Gelir Hesaplayıcı</h1>
+<p>1000 görüntüleme başına kazancınızı girin ve tahmini geliri görün.</p>
 
 <div class="calculator">
-  <input type="number" id="views" placeholder="Aylık görüntülenme">
-  <input type="number" id="cpm" placeholder="Ortalama CPM ($)">
-  <input type="number" id="monet" placeholder="Monetizasyon % (örn: 70)">
+  <input type="number" id="views" placeholder="Aylık toplam görüntülenme">
+  <input type="number" id="rate" placeholder="1000 izlenme başına kazanç ($)">
 
   <button onclick="calculate()">Hesapla</button>
 
@@ -87,10 +87,9 @@ button:hover {
 <script>
 function calculate() {
   let views = document.getElementById("views").value;
-  let cpm = document.getElementById("cpm").value;
-  let monet = document.getElementById("monet").value;
+  let rate = document.getElementById("rate").value;
 
-  let revenue = (views / 1000) * cpm * (monet / 100);
+  let revenue = (views / 1000) * rate;
   let yearly = revenue * 12;
 
   document.getElementById("result").innerHTML =

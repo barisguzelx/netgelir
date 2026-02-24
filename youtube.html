@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Gelir Hesaplama | NetGelir</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, #1a1f3a, #0b0f1e 70%);
+  color: white;
+  padding-top: 100px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #00f5ff, #9d00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.calculator {
+  background: rgba(25,30,60,0.6);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  width: 350px;
+  margin: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(45deg, #00f5ff, #9d00ff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>YouTube Gelir Hesaplayıcı</h1>
+
+<div class="calculator">
+  <input type="number" id="views" placeholder="Aylık görüntülenme">
+  <input type="number" id="cpm" placeholder="Ortalama CPM ($)">
+  <input type="number" id="monet" placeholder="Monetizasyon % (örn: 70)">
+
+  <button onclick="calculate()">Hesapla</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculate() {
+  let views = document.getElementById("views").value;
+  let cpm = document.getElementById("cpm").value;
+  let monet = document.getElementById("monet").value;
+
+  let revenue = (views / 1000) * cpm * (monet / 100);
+  let yearly = revenue * 12;
+
+  document.getElementById("result").innerHTML =
+    "Tahmini Aylık Gelir: $" + revenue.toFixed(2) +
+    "<br>Tahmini Yıllık Gelir: $" + yearly.toFixed(2);
+}
+</script>
+
+</body>
+</html>

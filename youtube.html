@@ -3,98 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Gelir Hesaplama | NetGelir</title>
+<title>YouTube Gelir Tahmini | NetGelir</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
-body {
-  background: radial-gradient(circle at 20% 20%, #1a1f3a, #0b0f1e 70%);
-  color: white;
-  padding-top: 100px;
-  text-align: center;
+body{
+background: radial-gradient(circle at 20% 20%, #1a1f3a, #0b0f1e 70%);
+color:white;
+padding-top:100px;
+text-align:center;
 }
 
-h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+h1{
+font-size:28px;
+margin-bottom:10px;
 }
 
-p {
-  color: #aaa;
-  margin-bottom: 30px;
+p{
+color:#aaa;
+margin-bottom:30px;
 }
 
-.calculator {
-  background: rgba(25,30,60,0.6);
-  backdrop-filter: blur(10px);
-  padding: 40px;
-  width: 350px;
-  margin: auto;
-  border-radius: 20px;
+.calculator{
+background:rgba(25,30,60,0.6);
+padding:40px;
+width:380px;
+margin:auto;
+border-radius:20px;
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: none;
-  font-size: 14px;
+input, select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:10px;
+border:none;
+font-size:14px;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-  background: linear-gradient(45deg, #00f5ff, #9d00ff);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+button{
+width:100%;
+padding:12px;
+border-radius:25px;
+border:none;
+background:linear-gradient(45deg,#00f5ff,#9d00ff);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
+button:hover{
+transform:scale(1.05);
 }
 
-.result {
-  margin-top: 20px;
-  font-size: 16px;
+.result{
+margin-top:20px;
+font-size:16px;
 }
 </style>
 </head>
 <body>
 
-<h1>YouTube Gelir Hesaplayıcı</h1>
-<p>1000 görüntüleme başına kazancınızı girin ve tahmini geliri görün.</p>
+<h1>YouTube Gelir Tahmini</h1>
+<p>Kategori ve ülkeye göre tahmini kazancınızı öğrenin.</p>
 
 <div class="calculator">
-  <input type="number" id="views" placeholder="Aylık toplam görüntülenme">
-  <input type="number" id="rate" placeholder="1000 izlenme başına kazanç ($)">
 
-  <button onclick="calculate()">Hesapla</button>
+<input type="number" id="views" placeholder="Aylık toplam görüntülenme">
 
-  <div class="result" id="result"></div>
+<select id="category">
+<option value="2">Genel içerik</option>
+<option value="1.5">Oyun kanalı</option>
+<option value="4">Finans / yatırım</option>
+<option value="3">Teknoloji</option>
+<option value="2.5">Eğitim</option>
+</select>
+
+<select id="country">
+<option value="1">Türkiye</option>
+<option value="2.5">ABD</option>
+<option value="2">Almanya</option>
+<option value="1.8">Avrupa</option>
+</select>
+
+<button onclick="calculate()">Geliri Hesapla</button>
+
+<div class="result" id="result"></div>
+
 </div>
 
 <script>
-function calculate() {
-  let views = document.getElementById("views").value;
-  let rate = document.getElementById("rate").value;
+function calculate(){
+let views=document.getElementById("views").value;
+let category=document.getElementById("category").value;
+let country=document.getElementById("country").value;
 
-  let revenue = (views / 1000) * rate;
-  let yearly = revenue * 12;
+let estimatedCPM = category * country;
+let revenue=(views/1000)*estimatedCPM;
+let yearly=revenue*12;
 
-  document.getElementById("result").innerHTML =
-    "Tahmini Aylık Gelir: $" + revenue.toFixed(2) +
-    "<br>Tahmini Yıllık Gelir: $" + yearly.toFixed(2);
+document.getElementById("result").innerHTML=
+"Tahmini Aylık Gelir: $"+revenue.toFixed(2)+
+"<br>Tahmini Yıllık Gelir: $"+yearly.toFixed(2)+
+"<br><br>Tahmini 1000 izlenme kazancı: $"+estimatedCPM.toFixed(2);
 }
 </script>
 

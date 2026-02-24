@@ -3,135 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NetGelir - Dijital Gelir Hesaplama Platformu</title>
+<title>NetGelir | Dijital Gelir Hesaplama Platformu</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0f172a;
-    color:white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1428, #0f1e3d);
+  color: white;
+  padding-top: 80px;
 }
 
 /* NAVBAR */
-nav{
-    background:#0b1220;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 20, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.logo{
-    font-size:22px;
-    font-weight:bold;
+.nav-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.menu a{
-    margin-left:20px;
-    text-decoration:none;
-    color:#cbd5e1;
-    transition:0.3s;
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.menu a:hover{
-    color:white;
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #ccc;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: #00ff99;
+}
+
+.cta-button a {
+  background: linear-gradient(45deg, #00ff99, #00ccff);
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
 }
 
 /* HERO */
-.hero{
-    text-align:center;
-    padding:60px 20px 20px 20px;
+
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px 20px;
 }
 
-.hero h1{
-    font-size:36px;
-    margin-bottom:10px;
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
 }
 
-.hero p{
-    color:#94a3b8;
+.hero p {
+  color: #aaa;
+  font-size: 14px;
 }
 
 /* CARDS */
-.container{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
-    margin-top:40px;
-    padding:20px;
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
-.card{
-    background:#1e293b;
-    padding:30px;
-    border-radius:15px;
-    width:250px;
-    transition:0.3s;
-    text-decoration:none;
-    color:white;
-    text-align:center;
+.card {
+  background: #162544;
+  padding: 30px;
+  border-radius: 15px;
+  width: 250px;
+  text-align: center;
+  transition: 0.3s;
+  text-decoration: none;
+  color: white;
 }
 
-.card:hover{
-    background:#334155;
-    transform:scale(1.05);
+.card:hover {
+  transform: translateY(-5px);
+  background: #1d2f55;
 }
 
-.card h2{
-    margin:10px 0;
+.card h2 {
+  margin-bottom: 10px;
 }
 
-footer{
-    margin-top:80px;
-    padding:20px;
-    text-align:center;
-    color:#64748b;
+.card p {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  font-size: 13px;
+  color: #777;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<nav>
+<header class="navbar">
+  <div class="nav-container">
     <div class="logo">NetGelir</div>
-    <div class="menu">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="youtube.html">YouTube</a>
-        <a href="twitch.html">Twitch</a>
-        <a href="tiktok.html">TikTok</a>
+
+    <nav class="nav-links">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="twitch.html">Twitch</a>
+      <a href="tiktok.html">TikTok</a>
+    </nav>
+
+    <div class="cta-button">
+      <a href="youtube.html">Hemen Hesapla</a>
     </div>
-</nav>
+  </div>
+</header>
 
 <section class="hero">
-    <h1>Dijital Gelir Hesaplama Platformu</h1>
-    <p>İçerik üreticileri için profesyonel gelir tahmin araçları</p>
+  <h1>Dijital Gelir Hesaplama Platformu</h1>
+  <p>İçerik üreticileri için profesyonel gelir tahmin araçları</p>
 </section>
 
-<div class="container">
+<section class="cards">
+  <a href="youtube.html" class="card">
+    <h2>YouTube</h2>
+    <p>YouTube gelir hesaplayıcı</p>
+  </a>
 
-<a href="youtube.html" class="card">
-<h2>🎥 YouTube</h2>
-<p>YouTube gelir hesaplayıcı</p>
-</a>
+  <a href="twitch.html" class="card">
+    <h2>Twitch</h2>
+    <p>Twitch gelir tahmini</p>
+  </a>
 
-<a href="twitch.html" class="card">
-<h2>🎮 Twitch</h2>
-<p>Twitch gelir tahmini</p>
-</a>
-
-<a href="tiktok.html" class="card">
-<h2>📱 TikTok</h2>
-<p>TikTok gelir tahmini</p>
-</a>
-
-</div>
+  <a href="tiktok.html" class="card">
+    <h2>TikTok</h2>
+    <p>TikTok gelir tahmini</p>
+  </a>
+</section>
 
 <footer>
-© 2026 NetGelir
+  © 2026 NetGelir
 </footer>
 
 </body>
-
 </html>
